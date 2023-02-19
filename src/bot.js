@@ -1,7 +1,9 @@
 const { Telegraf } = require('telegraf');
 const { Scrapper, URL } = require('./scrapper');
 
-const bot = new Telegraf('6233571833:AAEp-zz0cnyzkooUQehv_rS7m1S5hYIRpOQ');
+require('dotenv').config()
+
+const bot = new Telegraf(process.env.BOT_TOKEN);
 
 bot.start(ctx => {
   ctx.reply('Hello World');
