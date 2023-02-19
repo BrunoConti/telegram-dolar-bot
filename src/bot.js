@@ -9,9 +9,7 @@ bot.start(ctx => {
 
 bot.command('dolar', ctx => {
   Scrapper.getDollar()
-  .then(({ dolarCompra, dolarVenta}) => {
-    const message = `💵 DOLAR HOY 💵 \n\nCompra: ${dolarCompra} \nVenta: ${dolarVenta}`
-
+  .then(({ dolarCompra, dolarVenta }) => {
     ctx.replyWithHTML(
       `<b>💵 DOLAR HOY 💵</b> \n\n👉🏻 Compra: ${dolarCompra}\n\n👉🏻  Venta: ${dolarVenta}\n\nFuente: <a href="${URL}">dolarhoy.com</a>`
     );
