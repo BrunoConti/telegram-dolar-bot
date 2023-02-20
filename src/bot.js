@@ -21,7 +21,7 @@ bot.command('dolar', ctx => {
   });
 });
 
-if(process.env.ENVIRONMENT === 'PROD') {
+if(process.env.ENVIRONMENT === 'Production') {
   bot.launch({
     webhook: {
         domain: process.env.DOMAIN,
