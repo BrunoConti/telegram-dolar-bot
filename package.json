@@ -4,7 +4,7 @@
   "description": "",
   "main": "bot.js",
   "scripts": {
-    "start": "node index.js",
+    "start": "ENVIRONMENT=Production node index.js",
     "dev": "ENVIRONMENT=Development nodemon index.js"
   },
   "keywords": [],
