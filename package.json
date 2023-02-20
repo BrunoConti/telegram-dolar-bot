@@ -4,8 +4,8 @@
   "description": "",
   "main": "bot.js",
   "scripts": {
-    "start": "node src/bot.js",
-    "dev": "ENVIRONMENT=Development nodemon src/bot.js"
+    "start": "node index.js",
+    "dev": "ENVIRONMENT=Development nodemon index.js"
   },
   "keywords": [],
   "author": "",
