@@ -1,16 +1,10 @@
+const { createServer } = require('http');
 const bot = require('./src/bot');
 
 require('dotenv').config();
 
 if(process.env.ENVIRONMENT === 'Production') {
-  bot.launch({
-    webhook: {
-        domain: process.env.DOMAIN,
-        port: process.env.PORT || 8000,
-    }
-  }).then(() => {
-    console.info(`The bot ${bot.botInfo.username} is running on server`);
-  });
+  createServer(bot.createWebhook({ domain: process.env.DOMAIN })).listen(process.env.PORT || 8000);
 } else {
   bot.launch();
 }
