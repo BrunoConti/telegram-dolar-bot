@@ -21,4 +21,15 @@ bot.command('dolar', ctx => {
   });
 });
 
-bot.launch();
+if(process.env.ENVIRONMENT === 'PROD') {
+  bot.launch({
+    webhook: {
+        domain: process.env.DOMAIN,
+        port: process.env.PORT || 8000,
+    }
+  }).then(() => {
+    console.info(`The bot ${bot.botInfo.username} is running on server`);
+  });
+} else {
+  bot.launch();
+}
