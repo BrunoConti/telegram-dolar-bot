@@ -6,12 +6,13 @@ if(process.env.ENVIRONMENT === 'Production') {
   console.log('Running in prod')
   bot.launch({
     webhook: {
-        domain: process.env.DOMAIN,
-        port: process.env.PORT || 8000,
+      domain: process.env.DOMAIN,
+      port: process.env.PORT || 8000,
     }
   }).then(() => {
     console.info(`The bot ${bot.botInfo.username} is running on server`);
   });
 } else {
+  console.info('Running on dev dev')
   bot.launch();
 }
