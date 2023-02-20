@@ -6,7 +6,7 @@ require('dotenv').config()
 const bot = new Telegraf(process.env.BOT_TOKEN);
 
 if(process.env.ENVIRONMENT === "Production") {
-  bot.startWebhook('/https://telegram-dolar-bot.vercel.app/', null, 8000);
+  bot.startWebhook('https://telegram-dolar-bot.vercel.app/', null, 8000);
 }
 
 bot.start(ctx => {
