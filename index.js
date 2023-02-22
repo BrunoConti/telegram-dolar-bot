@@ -10,8 +10,16 @@ const app = express();
 app.use(cors());
 
 if(process.env.ENVIRONMENT === 'Production') {
-  app.use(bot.createWebhook({ domain: process.env.DOMAIN }));
-  app.listen(PORT, () => console.log('Listening on port', PORT));
+  app.use(bot.webhookCallback('/'))
+  bot.telegram.setWebhook(Process.env.DOMAIN)
+
+  app.get('/', (req, res) => {
+    res.send('Hello World!')
+  })
+
+  app.listen(PORT, () => {
+    console.log('listening on port', PORT);
+  })
 } else {
   bot.launch();
 }
