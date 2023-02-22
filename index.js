@@ -8,11 +8,11 @@ const PORT = process.env.PORT || 8000;
 if(process.env.ENVIRONMENT === 'Production') {
   const app = express();
   app.use(cors());
-
-  bot.telegram.setWebhook(`${process.env.DOMAIN}/secret-path`);
+  
   app.use(bot.webhookCallback('/secret-path'));
+  bot.telegram.setWebhook(`${process.env.DOMAIN}/secret-path`);
 
-  app.get('/', (req, res) => {
+  app.get('/', (_req, res) => {
     res.send('💵 DOLAR BOT 💵')
   });
 
