@@ -10,7 +10,7 @@ bot.catch((err, ctx) => {
 });
 
 bot.start(ctx => {
-  ctx.replyWithText('Bienvenid@ a DOLAR-BOT 🤖');
+  ctx.reply('Bienvenid@ a DOLAR-BOT 🤖');
 });
 
 bot.command('dolar', ctx => {
