@@ -9,8 +9,8 @@ if(process.env.ENVIRONMENT === 'Production') {
   const app = express();
   app.use(cors());
   
-  app.use(bot.webhookCallback('/secret-path'));
   bot.telegram.setWebhook(`${process.env.DOMAIN}/secret-path`);
+  app.use(bot.webhookCallback('/secret-path'));
 
   app.get('/', (_req, res) => {
     res.send('💵 DOLAR BOT 💵')
