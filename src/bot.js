@@ -13,8 +13,8 @@ bot.start(ctx => {
   ctx.reply('Bienvenid@ a DOLAR-BOT 🤖');
 });
 
-bot.command('dolar', ctx => {
-  Scrapper.getDollar()
+bot.command('dolar', async ctx => {
+  await Scrapper.getDollar()
   .then(({ dolarCompra, dolarVenta }) => {
     ctx.replyWithHTML(
       `<b>💵 DOLAR HOY 💵</b> \n\n👉🏻 Compra: ${dolarCompra}\n\n👉🏻  Venta: ${dolarVenta}\n\nFuente: <a href="${URL}">dolarhoy.com</a>`
