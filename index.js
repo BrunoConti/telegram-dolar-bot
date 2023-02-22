@@ -1,16 +1,17 @@
+const express = require('express');
+const cors = require('cors');
 const bot = require('./src/bot');
 
 require('dotenv').config();
+const PORT = process.env.PORT || 8000;
+
+const app = express();
+
+app.use(cors());
 
 if(process.env.ENVIRONMENT === 'Production') {
-  bot.launch({
-    webhook: {
-      domain: process.env.DOMAIN,
-      port: process.env.PORT || 8000,
-    }
-  }).then(() => {
-    console.info(`The bot ${bot.botInfo.username} is running on server`);
-  });
+  app.use(bot.createWebhook({ domain: process.env.DOMAIN }));
+  app.listen(PORT, () => console.log('Listening on port', PORT));
 } else {
   bot.launch();
 }
