@@ -10,11 +10,11 @@ const app = express();
 app.use(cors());
 
 if(process.env.ENVIRONMENT === 'Production') {
-  app.use(bot.webhookCallback('/'))
-  bot.telegram.setWebhook(process.env.DOMAIN)
+  app.use(bot.webhookCallback('/secret-path'))
+  bot.telegram.setWebhook(`${process.env.DOMAIN}/secret-path`)
 
   app.get('/', (req, res) => {
-    res.send('Hello World!')
+    res.send('💵 DOLAR BOT 💵')
   })
 
   app.listen(PORT, () => {
