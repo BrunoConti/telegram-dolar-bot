@@ -16,7 +16,10 @@ if(process.env.ENVIRONMENT === 'Production') {
     res.send('💵 DOLAR BOT 💵')
   });
 
-  app.post(`/secret-path`, (req, res) => bot.handleUpdate(req.body, res));
+  app.post(`/secret-path`, (req, res) => {
+    console.log(req.body)
+    return bot.handleUpdate(req.body, res)
+})
 
   app.listen(PORT, () => {
     console.log('listening on port', PORT);
