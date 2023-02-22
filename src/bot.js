@@ -6,8 +6,12 @@ require('dotenv').config();
 const bot = new Telegraf(process.env.BOT_TOKEN);
 
 bot.catch((err, ctx) => {
-  console.log(`Ooops, encountered an error for ${ctx.updateType}`, err)
-})
+  console.error(`Ooops, encountered an error for ${ctx.updateType}`, err);
+});
+
+bot.start(ctx => {
+  ctx.replyWithText('Bienvenid@ a DOLAR-BOT 🤖');
+});
 
 bot.command('dolar', ctx => {
   Scrapper.getDollar()

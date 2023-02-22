@@ -9,14 +9,14 @@ if(process.env.ENVIRONMENT === 'Production') {
   const app = express();
   app.use(cors());
   
-  bot.telegram.setWebhook(`${process.env.DOMAIN}/secret-path`);
-  app.use(bot.webhookCallback('/secret-path'));
+  bot.telegram.setWebhook(`${process.env.DOMAIN}/`);
+  app.use(bot.webhookCallback('/'));
 
   app.get('/', (_req, res) => {
     res.send('💵 DOLAR BOT 💵')
   });
 
-  // app.post(`/secret-path`, async (req, res) => await bot.handleUpdate(req.body, res));
+  app.post(`/`, async (req, res) => await bot.handleUpdate(req.body, res));
 
   app.listen(PORT, () => {
     console.log('listening on port', PORT);
