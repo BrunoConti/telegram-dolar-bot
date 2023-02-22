@@ -15,7 +15,21 @@ if(process.env.ENVIRONMENT === 'Production') {
 
   app.get('/', (req, res) => {
     res.send('💵 DOLAR BOT 💵')
-  })
+  });
+
+  app.post('/', () => {
+    bot.command('dolar', ctx => {
+      Scrapper.getDollar()
+      .then(({ dolarCompra, dolarVenta }) => {
+        ctx.replyWithHTML(
+          `<b>💵 DOLAR HOY 💵</b> \n\n👉🏻 Compra: ${dolarCompra}\n\n👉🏻  Venta: ${dolarVenta}\n\nFuente: <a href="${URL}">dolarhoy.com</a>`
+        );
+      })
+      .catch(err => {
+        ctx.reply(`Error message: ${err}`);
+      });
+    });
+  });
 
   app.listen(PORT, () => {
     console.log('listening on port', PORT);
