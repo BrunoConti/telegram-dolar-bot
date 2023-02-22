@@ -11,7 +11,7 @@ app.use(cors());
 
 if(process.env.ENVIRONMENT === 'Production') {
   app.use(bot.webhookCallback('/'))
-  bot.telegram.setWebhook(Process.env.DOMAIN)
+  bot.telegram.setWebhook(process.env.DOMAIN)
 
   app.get('/', (req, res) => {
     res.send('Hello World!')
