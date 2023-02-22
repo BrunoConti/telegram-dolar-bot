@@ -5,35 +5,26 @@ const bot = require('./src/bot');
 require('dotenv').config();
 const PORT = process.env.PORT || 8000;
 
-const app = express();
-
-app.use(cors());
-
 if(process.env.ENVIRONMENT === 'Production') {
-  app.use(bot.webhookCallback(process.env.DOMAIN));
-  bot.telegram.setWebhook(process.env.DOMAIN);
+  const app = express();
+  app.use(cors());
+
+  bot.telegram.setWebhook(`${process.env.DOMAIN}/secret-path`);
+  app.use(bot.webhookCallback('/secret-path'));
 
   app.get('/', (req, res) => {
     res.send('💵 DOLAR BOT 💵')
   });
 
-  app.post('/', () => {
-    bot.command('dolar', ctx => {
-      Scrapper.getDollar()
-      .then(({ dolarCompra, dolarVenta }) => {
-        ctx.replyWithHTML(
-          `<b>💵 DOLAR HOY 💵</b> \n\n👉🏻 Compra: ${dolarCompra}\n\n👉🏻  Venta: ${dolarVenta}\n\nFuente: <a href="${URL}">dolarhoy.com</a>`
-        );
-      })
-      .catch(err => {
-        ctx.reply(`Error message: ${err}`);
-      });
-    });
-  });
+  app.post(`/secret-path`, (req, res) => {
+    console.log(req.body)
+    return bot.handleUpdate(req.body, res)
+})
 
   app.listen(PORT, () => {
     console.log('listening on port', PORT);
-  })
+  });
+
 } else {
   bot.launch();
 }
